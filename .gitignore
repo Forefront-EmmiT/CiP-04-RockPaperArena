@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# Enviroment
+.env
