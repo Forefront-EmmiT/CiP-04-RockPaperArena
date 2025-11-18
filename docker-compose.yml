@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mariadb:
     image: mariadb:11.2
@@ -24,7 +22,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./CiP-04-RockPaperArena/shared:/src/shared
+      - ./shared:/src/shared
     environment:
       DB_HOST: rockpaperarena_db
       DB_PORT: 3306
@@ -33,6 +31,9 @@ services:
       DB_NAME: ${DB_NAME}
     networks:
       - rockpaperarena_network
+    depends_on:
+      - mariadb
+
   frontend:
     build:
       context: ./frontend
