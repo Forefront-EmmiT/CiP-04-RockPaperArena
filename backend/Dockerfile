@@ -14,11 +14,6 @@ COPY ./backend/src /app/src
 
 RUN npm run build:docker
 
-RUN ls -la /app/dist
-RUN test -f /app/dist/server.js && echo "server.js exists!" || echo "server.js NOT found!"
-
-RUN ls -la /app/dist
-
 EXPOSE 5000
 
 CMD ["node", "dist/src/server.js"]
