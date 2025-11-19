@@ -24,7 +24,7 @@ services:
     volumes:
       - ./shared:/src/shared
     environment:
-      DB_HOST: rockpaperarena_db
+      DB_HOST: mariadb
       DB_PORT: 3306
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
