@@ -9,9 +9,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["./shared/*"]
+      "@shared/*": ["shared/*"]
     }
   },
-  "include": ["src/**/*", "./shared/**/*"],
-  "exclude": ["node_modules", "dist", "shared"]
+  "include": ["src/**/*", "shared/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -22,13 +22,17 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./shared:/src/shared
+      - ./backend/src:/app/src
+      - ./shared:/app/shared 
+      - /app/node_modules
     environment:
       DB_HOST: mariadb
       DB_PORT: 3306
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
+      NODE_ENV: development
+    command: npm run dev
     networks:
       - rockpaperarena_network
     depends_on:
