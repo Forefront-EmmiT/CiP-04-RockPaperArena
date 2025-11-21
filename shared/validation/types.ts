@@ -13,6 +13,11 @@ export interface Match {
   playerTwo: string;
 }
 
+export interface MatchResult {
+  winner: string;
+  loser: string;
+}
+
 export interface Round {
   roundNumber: number;
   matches: Match[];
