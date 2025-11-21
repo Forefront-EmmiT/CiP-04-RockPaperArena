@@ -1,29 +1,33 @@
 import type { Player, Round, Match } from "@shared/validation/types";
 
 export function roundRobin(n: number, playerData: Player[]): Round[] {
-  const players: Player[] = playerData;
+  const players: Player[] = [...playerData];
   const allRounds: Round[] = [];
+  const numRounds = n - 1;
 
-  for (let r = 0; r < n - 1; r++) {
+  for (let round = 0; round < numRounds; round++) {
     const matches: Match[] = [];
 
-    matches.push({
-      playerOne: players[0].name,
-      playerTwo: players[(r % (n - 1)) + 1].name,
-    });
+    for (let i = 0; i < n / 2; i++) {
+      let home: number;
+      let away: number;
 
-    for (let i = 1; i < n / 2; i++) {
-      const firstPlayer = players[((r + i) % (n - 1)) + 1].name;
-      const secondPlayer = players[((r + n - i - 1) % (n - 1)) + 1].name;
+      if (i === 0) {
+        home = 0;
+        away = round + 1;
+      } else {
+        home = ((round + i) % (n - 1)) + 1;
+        away = ((round - i + (n - 1)) % (n - 1)) + 1;
+      }
 
       matches.push({
-        playerOne: firstPlayer,
-        playerTwo: secondPlayer,
+        playerOne: players[home].name,
+        playerTwo: players[away].name,
       });
     }
 
     allRounds.push({
-      roundNumber: r + 1,
+      roundNumber: round + 1,
       matches: matches,
     });
   }
