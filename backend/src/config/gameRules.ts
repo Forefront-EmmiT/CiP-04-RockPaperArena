@@ -1,7 +1,7 @@
-export type Choise = "rock" | "paper" | "scissor";
+import type { Choice } from "@shared/validation/types";
 
-export const GAME_RULES: Record<Choise, Choise> = {
-  rock: "scissor",
-  scissor: "paper",
+export const GAME_RULES: Record<Choice, Choice> = {
+  rock: "scissors",
+  scissors: "paper",
   paper: "rock",
 };
