@@ -46,6 +46,7 @@ services:
     volumes: 
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
+      - ./shared:/app/shared
       - /app/node_modules
       - /app/.next
     environment:
