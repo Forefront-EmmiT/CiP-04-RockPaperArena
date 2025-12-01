@@ -43,6 +43,14 @@ services:
       context: ./frontend
     ports:
       - "3000:3000"
+    volumes: 
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - /app/node_modules
+      - /app/.next
+    environment:
+      NODE_ENV: development
+    command: npm run dev
     networks:
       - rockpaperarena_network
 
