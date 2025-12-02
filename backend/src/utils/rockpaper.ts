@@ -1,14 +1,13 @@
-import { Choice, MatchResult } from "@shared/validation/types";
+import { Choice, MatchResult } from "@shared/types/types";
 import { GAME_RULES } from "../config/gameRules";
 
 export function rockPaper(): MatchResult[] {
   const result: MatchResult[] = [];
+  const choices = Object.keys(GAME_RULES) as Choice[];
 
-  function rockPaperController() {
-    const options: Choice[] = ["rock", "paper", "scissors"];
-    const random = options[Math.floor(Math.random() * options.length)];
-
-    return random;
+  function generateComputerChoice() {
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    return computerChoice;
   }
 
   function rockPaperWinner(homeChoice: Choice, awayChoice: Choice) {
@@ -16,19 +15,19 @@ export function rockPaper(): MatchResult[] {
       return null;
     }
 
-    if (GAME_RULES[homeChoice] === awayChoice) {
+    if (GAME_RULES[homeChoice].includes(awayChoice)) {
       return homeChoice;
     }
     return awayChoice;
   }
 
-  const homeChoice = rockPaperController();
-  const awayChoice = rockPaperController();
+  const homeChoice = "rock";
+  const computerChoice = generateComputerChoice();
 
-  const winner = rockPaperWinner(homeChoice, awayChoice);
+  const winner = rockPaperWinner(homeChoice, computerChoice);
 
   if (winner) {
-    const loser = homeChoice === winner ? awayChoice : homeChoice;
+    const loser = homeChoice === winner ? computerChoice : homeChoice;
     result.push({
       winner: winner,
       loser: loser,
