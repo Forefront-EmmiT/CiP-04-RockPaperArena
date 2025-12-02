@@ -1,38 +1,41 @@
-import { Choice, MatchResult } from "@shared/types/types";
+import { Choice, PlayResponse, Winner } from "@shared/types/types";
 import { GAME_RULES } from "../config/gameRules";
 
-export function rockPaper(): MatchResult[] {
-  const result: MatchResult[] = [];
+function generateComputerChoice() {
   const choices = Object.keys(GAME_RULES) as Choice[];
-
-  function generateComputerChoice() {
-    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-    return computerChoice;
-  }
-
-  function rockPaperWinner(homeChoice: Choice, awayChoice: Choice) {
-    if (homeChoice == awayChoice) {
-      return null;
-    }
-
-    if (GAME_RULES[homeChoice].includes(awayChoice)) {
-      return homeChoice;
-    }
-    return awayChoice;
-  }
-
-  const homeChoice = "rock";
-  const computerChoice = generateComputerChoice();
-
-  const winner = rockPaperWinner(homeChoice, computerChoice);
-
-  if (winner) {
-    const loser = homeChoice === winner ? computerChoice : homeChoice;
-    result.push({
-      winner: winner,
-      loser: loser,
-    });
-  }
-
-  return result;
+  const choice = choices[Math.floor(Math.random() * choices.length)];
+  return choice;
 }
+
+function generateWinner(playerChoice: Choice, computerChoice: Choice) {
+  if (playerChoice == computerChoice) {
+    return null;
+  }
+
+  if (GAME_RULES[playerChoice].includes(computerChoice)) {
+    return playerChoice;
+  }
+  return computerChoice;
+}
+
+export function playRound(playerChoice: Choice): PlayResponse {
+  const computerChoice = generateComputerChoice();
+  const winner = generateWinner(playerChoice, computerChoice);
+
+  let gameResult: Winner;
+
+  if (winner === null) {
+    gameResult = null;
+  } else if (winner === playerChoice) {
+    gameResult = "player";
+  } else {
+    gameResult = "computer";
+  }
+
+  return {
+    winner: gameResult,
+    playerChoice: playerChoice,
+    computerChoice: computerChoice,
+  };
+}
+
