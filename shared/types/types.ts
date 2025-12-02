@@ -26,18 +26,18 @@ export interface Round {
 export type ValidationError = {
   field: string;
   message: string;
-}
+};
 
 export type Choice = "rock" | "paper" | "scissors";
 
-export type GameResult = "win" | "defeated" | "draw";
+export type Winner = "player" | "computer" | null;
 
 export type PlayRequest = {
   choice: Choice;
-}
+};
 
 export type PlayResponse = {
-  gameResult: GameResult;
+  winner: Winner;
   playerChoice: Choice;
   computerChoice: Choice;
-}
+};
