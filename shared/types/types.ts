@@ -29,3 +29,15 @@ export type ValidationError = {
 }
 
 export type Choice = "rock" | "paper" | "scissors";
+
+export type GameResult = "win" | "defeated" | "draw";
+
+export type PlayRequest = {
+  choice: Choice;
+}
+
+export type PlayResponse = {
+  gameResult: GameResult;
+  playerChoice: Choice;
+  computerChoice: Choice;
+}

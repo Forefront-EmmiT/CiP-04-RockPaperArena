@@ -1,4 +1,4 @@
-import type { Choice } from "@shared/validation/types";
+import type { Choice } from "@shared/types/types";
 
 export const GAME_RULES: Record<Choice, Choice> = {
   rock: "scissors",

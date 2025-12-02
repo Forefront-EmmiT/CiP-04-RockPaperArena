@@ -1,7 +1,7 @@
 import { GameButton } from "./GameButton";
 import { Box } from "@mui/material";
 import React from "react";
-import { Choice } from "@shared/validation/types";
+import { Choice } from "@shared/types/types";
 
 interface GameButtonProps {
   onChoice: (choise: Choice) => void;

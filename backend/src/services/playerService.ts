@@ -1,4 +1,4 @@
-import { Player } from "@shared/validation/types";
+import { Player } from "@shared/types/types";
 import { pool } from "../db/config";
 import { RowDataPacket } from "mysql2/promise";
 
