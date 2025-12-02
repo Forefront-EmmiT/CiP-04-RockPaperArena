@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { getAllPlayers } from "../services/playerService";
 import { error } from "console";
 import { roundRobin } from "../utils/roundRobin";
-import { rockPaper } from "../utils/rockpaper";
+import { playRound } from "../utils/rockpaper";
 
 export const getHello = (req: Request, res: Response) => {
   res.json({ message: "hello world" });
@@ -33,7 +33,7 @@ export const getTournamentSchedule = async (req: Request, res: Response) => {
 export const getTournamentResult = async (req: Request, res: Response) => {
   // const data = await getAllPlayers();
 
-  const result = rockPaper();
+  const result = playRound("scissors");
 
-  res.json({ players: result });
+  res.json({ round: result });
 };
