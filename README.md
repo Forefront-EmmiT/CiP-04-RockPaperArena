@@ -3,62 +3,60 @@
 # RockPaperArena
 
 ## Project Setup
+
 This project consists of two main parts:
+
 1. **Backend**: A Node.js server built with TypeScript and Express.
 2. **Frontend**: A React application created with Next.js.
+3. **Database**: MariaDB
+
+The entire application is containerized using Docker and orchestrated with Docker Compose for easy development and deployment.
 
 ---
 
 ## Prerequisites
+
 Ensure you have the following installed on your system:
-- **Node.js** (v16 or higher recommended)
-- **npm** (Node Package Manager)
+
+- **Docker**
+- **Docker Compose**
 
 ---
 
-## Starting the Backend
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+````env
+# Database Configuration
+DB_HOST=mariadb
+DB_PORT=3306
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=your_db_name
+DB_ROOT_PASSWORD=your_db_root_password
+
+---
+
+## Starting the Application
 
 ### Steps:
-1. Navigate to the backend directory:
+1. Clone the repository and navigate to the project directory:
    ```bash
-   cd backend
+   cd CiP-04-RockPaperArena
+````
+
+2. Ensure your `.env` file is configured with the correct database credentials.
+
+3. Build and start all services:
+
+   ```bash
+   docker-compose up --build
    ```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. The backend server will start on `http://localhost:5000` (or the port specified in your `.env` file).
+4. The services will start on the following ports:
+   - **Frontend**: `http://localhost:3000`
+   - **Backend**: `http://localhost:5000`
+   - **Database**: `localhost:3306` (internal to containers)
 
 ---
-
-## Starting the Frontend
-
-### Steps:
-1. Navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. The frontend application will start on `http://localhost:3000`.
-
----
-
-## Notes
-- Ensure the backend is running before accessing the frontend, as the frontend may rely on backend APIs.
