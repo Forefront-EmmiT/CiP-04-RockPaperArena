@@ -1,9 +1,20 @@
-import { Router, Request, Response } from "express";
+import express from "express";
+import cors from "cors";
+import playerRoutes from "../routes/playerRoutes";
 
-const router = Router();
+const app = express();
+app.set("json spaces", 2);
 
-router.get("/", (req: Request, res: Response) => {
-    res.json({ message: "API molto bene" });
+app.use((req, res, next) => {
+  next();
 });
+app.use(express.json());
+app.use(cors());
 
-export default router;
+app.use("/", playerRoutes);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Server listening on PORT:", PORT);
+});

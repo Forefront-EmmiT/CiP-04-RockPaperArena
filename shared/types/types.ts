@@ -1,0 +1,43 @@
+export interface Player {
+  id: number;
+  name: string;
+}
+
+export interface ValidationResult {
+  isValid: boolean;
+  errorMsg?: string;
+}
+
+export interface Match {
+  playerOne: string;
+  playerTwo: string;
+}
+
+export interface MatchResult {
+  winner: string;
+  loser: string;
+}
+
+export interface Round {
+  roundNumber: number;
+  matches: Match[];
+}
+
+export type ValidationError = {
+  field: string;
+  message: string;
+};
+
+export type Choice = "rock" | "paper" | "scissors";
+
+export type Winner = "player" | "computer" | null;
+
+export type PlayRequest = {
+  choice: Choice;
+};
+
+export type PlayResponse = {
+  winner: Winner;
+  playerChoice: Choice;
+  computerChoice: Choice;
+};
